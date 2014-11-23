@@ -109,6 +109,18 @@ function studio_makom_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'studio_makom_scripts' );
 
+if (!function_exists('write_log')) :
+function write_log ( $log )  {
+    if ( true === WP_DEBUG ) {
+        if ( is_array( $log ) || is_object( $log ) ) {
+            error_log( print_r( $log, true ) );
+        } else {
+            error_log( $log );
+        }
+    }
+}
+endif;
+
 add_action( 'admin_init', 'hide_editor' );
 function hide_editor() {
         remove_post_type_support('page', 'editor');
