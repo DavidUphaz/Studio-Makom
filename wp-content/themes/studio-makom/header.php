@@ -16,7 +16,6 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link rel="shortcut icon" type="image/ico" href="<?php echo get_template_directory_uri().'/favicon.png'; ?>" />
 <?php wp_head(); ?>
-<?php carousel_positions(); ?>
 </head>
 
 <?php
@@ -27,18 +26,6 @@
  *  functions for menu markup generation
  */
 
-function carousel_positions()
-{
-    echo '<style>'.PHP_EOL;
-    $carouselIndex = 1;
-    while (have_rows('subPageRepeater') ) : the_row();
-        echo PHP_EOL.'#carousel_'.$carouselIndex.'{';
-        echo 'left: '.get_sub_field('carousel_left_position').'%; top: '.get_sub_field('carousel_top_position').'%;'.'}';
-        $carouselIndex++;
-    endwhile;
-    echo PHP_EOL.'</style>'.PHP_EOL;
-}
-
 function the_menu_items()
 {
     $pages = get_pages( array( 'sort_column' => 'menu_order') );
@@ -46,13 +33,11 @@ function the_menu_items()
         $active = ($page->ID === get_the_ID() ? 'class="active"' : '');
         echo '<li '.$active.'><a href="'.get_page_link($page->ID).'">'.$page->post_title.'</a></li>'.PHP_EOL;
     }
-    echo '<li><a href="#">להזמנות</a></li>'.PHP_EOL;
     echo '<li><a href="#" target="_blank">צור קשר</a></li>'.PHP_EOL;
-    echo '<li><a style="padding:0;" href="'.home_url().'"><img src="'.get_template_directory_uri().'/Assets/logo.png" alt=""></a></li>'.PHP_EOL;
 }
 ?>
 
- <body <?php body_class('studio_makom_font'); ?>>
+ <body <?php body_class('studio_makom_body'); ?>>
     <a class="showNavbar navbar-toggle">
         <img src="<?php echo get_template_directory_uri(); ?>/Assets/show_bar.png" alt="">
     </a>

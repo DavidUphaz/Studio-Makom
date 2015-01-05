@@ -95,8 +95,8 @@ function studio_makom_scripts() {
         wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
         wp_enqueue_style( 'custom-scroll-bar', get_template_directory_uri() . '/jquery.mCustomScrollbar.css');
         wp_enqueue_style( 'studio-makom-style', get_stylesheet_uri() );
-        if (is_page_template('page-templates/main-content.php'))
-            wp_enqueue_style( 'studio-makom-main-content-style', get_template_directory_uri() . '/layouts/main-content.css' );
+        if (is_page_template('page-templates/projects.php'))
+            wp_enqueue_style( 'studio-makom-main-content-style', get_template_directory_uri() . '/layouts/projects.css' );
 
         wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array('jquery'), '', false );
 	wp_enqueue_script( 'custom-scrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '', false );

@@ -23,11 +23,8 @@ Global font specification
 =============================================
 */
 
-.studio_makom_font {
-    font-weight: bolder;
-    font-family: Guttman Hodes;
-    font-size: large;
-    color: black;
+.studio_makom_body {
+    padding:70px;
 }
 
  /*
