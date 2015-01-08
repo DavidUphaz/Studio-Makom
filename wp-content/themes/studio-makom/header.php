@@ -28,12 +28,11 @@
 
 function the_menu_items()
 {
-    $pages = get_pages( array( 'sort_column' => 'menu_order') );
-    foreach($pages as $page){
-        $active = ($page->ID === get_the_ID() ? 'class="active"' : '');
-        echo '<li '.$active.'><a href="'.get_page_link($page->ID).'">'.$page->post_title.'</a></li>'.PHP_EOL;
-    }
-    echo '<li><a href="#" target="_blank">צור קשר</a></li>'.PHP_EOL;
+//    $pages = get_pages( array( 'sort_column' => 'menu_order') );
+//    foreach($pages as $page){
+//        $active = ($page->ID === get_the_ID() ? 'class="active"' : '');
+//        echo '<li '.$active.'><a href="'.get_page_link($page->ID).'">'.$page->post_title.'</a></li>'.PHP_EOL;
+//    }
 }
 ?>
 
@@ -56,4 +55,4 @@ function the_menu_items()
             </div><!--/.nav-collapse -->
 	</div>
     </div>
-    <div id="top" class="container" style="width:auto;">
+    <div id="top" class="container" >

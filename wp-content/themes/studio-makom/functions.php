@@ -93,19 +93,17 @@ add_action( 'widgets_init', 'studio_makom_widgets_init' );
  */
 function studio_makom_scripts() {
         wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
-        wp_enqueue_style( 'custom-scroll-bar', get_template_directory_uri() . '/jquery.mCustomScrollbar.css');
         wp_enqueue_style( 'studio-makom-style', get_stylesheet_uri() );
-        if (is_page_template('page-templates/projects.php'))
-            wp_enqueue_style( 'studio-makom-main-content-style', get_template_directory_uri() . '/layouts/projects.css' );
+        $template_name = basename(get_page_template(), ".php");
+        if (!empty($template_name))
+            wp_enqueue_style( 'studio-makom-main-content-style', get_template_directory_uri() . '/layouts/'. $template_name . '.css' );
 
         wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array('jquery'), '', false );
-	wp_enqueue_script( 'custom-scrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '', false );
-        wp_enqueue_script( 'touchSwipe-js', get_template_directory_uri() . '/js/jquery.touchSwipe.min.js', array('jquery'), '', false );
         wp_enqueue_script( 'lazyLoad-js', get_template_directory_uri() . '/js/jquery.lazyload.min.js', array('jquery'), '', false );
         wp_enqueue_script( 'studio-makom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
 	wp_enqueue_script( 'studio-makom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
-        wp_enqueue_script( 'studio-makom-js', get_template_directory_uri() . '/js/StudioMakom.js', array('jquery'), '', false );
-       
+        if (!empty($template_name))
+            wp_enqueue_script( 'studio-makom-js', get_template_directory_uri() . '/js/' . $template_name . '.js', array('jquery'), '', false );      
 }
 add_action( 'wp_enqueue_scripts', 'studio_makom_scripts' );
 

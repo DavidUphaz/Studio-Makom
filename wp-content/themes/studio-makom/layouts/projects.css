@@ -5,6 +5,7 @@ Layout: projects
 
 .img-overlay {
     position: relative;
+    margin-bottom: 30px;
 }
 
 .overlay-absolute, .overlay-table, .overlay-middle {
@@ -15,6 +16,8 @@ Layout: projects
 }
 .overlay-absolute {
     position: absolute;
+    background-color: rgba(0,0,0,.5);
+    display:none;
 }
 .overlay-table {
     display: table;
@@ -25,11 +28,13 @@ Layout: projects
 }
 
 .overlay-text {
+    color: white;
     text-align:center;
     padding-left:20px;
     padding-right:20px;
+    margin:0;
 }
-.nopadding {
+.project-padding {
    padding: 0 !important;
-   margin: 0 !important;
+   margin: 5px !important;
 }
