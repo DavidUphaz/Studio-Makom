@@ -37,9 +37,6 @@ function the_menu_items()
 ?>
 
  <body <?php body_class('studio_makom_body'); ?>>
-    <a class="showNavbar navbar-toggle">
-        <img src="<?php echo get_template_directory_uri(); ?>/Assets/show_bar.png" alt="">
-    </a>
     <div class="navbar navbar-default navbar-fixed-top navbar-transp" role="navigation">
         <div class="container">
             <div class="navbar-header">

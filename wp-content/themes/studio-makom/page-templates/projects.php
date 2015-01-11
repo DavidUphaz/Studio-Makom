@@ -9,12 +9,12 @@ function echo_projects()
 {
     $projects = get_pages(array(
         ‘meta_key’ => ‘_wp_page_template’,
-        ‘meta_value’ => ‘page-quote.php’,
+        ‘meta_value’ => ‘single-project.php’,
         ‘hierarchical’ => 0
     ));
     echo '<div class="row">';
     foreach($projects as $project){
-        echo '<div class="col-xs-12 col-sm-6 col-md-3">';
+        echo '<div class="col-xs-12 col-sm-6 col-md-4">';
         echo '  <div class="img-overlay">';
         echo '      <img src="' . get_field('thumbnail', $project->ID)['url'] . '" class="img-responsive"/>';
         echo '      <a href="' . get_page_link($project->ID) .'" class="overlay-absolute">';
