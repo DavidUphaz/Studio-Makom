@@ -23,102 +23,17 @@ Global font specification
 =============================================
 */
 
+.navbar-default {
+background-color: rgba(0,0,0,0);
+border-color: rgba(0,0,0,0);
+}
+
 .studio_makom_body {
-    padding:0px;
+    padding:10px;
     padding-top:70px;
 }
 
- /*
- Navbar
- =============================================
- */
-
-.navbar, .navbar-nav {
-    display: inline-block;
-    float: none;
-    background-color: rgba(255,255,255,.0);
-    border: 0!important;
-}
-
-.navbar-collapse {
-    text-align: center;
-    border: 0;
-}
-
-.navbar-collapse.in {
-    overflow-y: visible;
-}
-
-@media screen and (max-width:767px) {
-	.navbar-collapse {
-		text-align: right;
-	}
-}
-
-.navbar-default .navbar-nav > .active > a {
-    background: rgba(112,59,45, .5);
-    color: white;
-    font-size: 19px;
-    padding-top: 15px;
-    letter-spacing: 3px;
-}
-
-ul.nav {
-    background:rgba(255,255,255, .3);
-    height:32px;
-}
-
-ul.nav a:hover {
-    background: rgba(112,59,45, .5) !important;
-    color: white !important;
-}
-
-.navbar-nav > li > a {
-    /*padding-top: 15px !important;*/
-    padding-bottom: 0px !important;
-}
-
-@media screen and (min-width:768px) {
-    .navbar .nav > li {
-        float:right;
-    }
-}
-
-.navbar .nav > li > a {
-    color: black;
-    text-decoration: underline;
-    font-size:16px;
-    letter-spacing: 3px;
-}
-
-.navbar .icon-bar {
-    background-color: white !important;
-    height: 3px !important;
-}
-
-.navbar-toggle {
-    background-color: rgba(0,0,0,.2);
-    border: 0;
-}
-
-.navbar-toggle:hover {
-    background: rgba(0, 0, 0, .5) !important;
-}
-
-.showNavbar{
-    text-align:center; 
-    background:rgba(166,166,166,.3);
-    font-weight: bold;
-    text-decoration: none;
-    position:fixed;
-    top:3px;
-    right:3px;
-    z-index:10;
-    display:none;
-    cursor:pointer;
-}
-
-.navbar-toggle {
-    padding:3px;
-    background-color:transparent;
+* {
+    color:black;
+    direction: rtl;
 }
