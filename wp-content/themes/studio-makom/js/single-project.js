@@ -1,23 +1,23 @@
+var gallery_content = '.project-carousel';
+var text_content = '.project-text,.project-drawing';
+var fade_duration = 500;
+
+function gallery_visible()
+{
+    return(jQuery(gallery_content).is(":visible"));
+}
 
 function text_vs_gallery(state)
-{
-    var text_controls = '.show-gallery';
-    var gallery_controls = '.anchor-next-slide,.anchor-prev-slide,.show-text';
-    var text_content = '.project-text,.project-drawing';
-    var gallery_content = '.project-carousel';
+{   
     if (state === "text")
     {
         jQuery(gallery_content).hide();
-        jQuery(text_content).show();
-        jQuery(gallery_controls).attr('disabled', true);
-        jQuery(text_controls).attr('disabled', false);
+        jQuery(text_content).fadeIn(fade_duration);
     }
     else
     {
-        jQuery(gallery_content).show();
         jQuery(text_content).hide();
-        jQuery(gallery_controls).attr('disabled', false);
-        jQuery(text_controls).attr('disabled', true);
+        jQuery(gallery_content).fadeIn(fade_duration);
     }
 }
 function show_text()
@@ -32,12 +32,14 @@ function show_gallery()
 
 function resize()
 {
-    var top_offset = jQuery('.top-row').offset().top;
-    var bottom_offset = jQuery('.content-controls').outerHeight();
-    var content_height = jQuery(window).innerHeight() - (top_offset + bottom_offset + 20);
-    var content_width = jQuery('.top-row').innerWidth();
-    jQuery('.carousel-inner,.project-text,.project-drawing').outerHeight(content_height);
-    jQuery('.project-text,.project-drawing').outerWidth(content_width * .48);
+    if (screenfull.isFullscreen){
+        jQuery('.carousel-inner').css('height', '100%');
+        jQuery('.carousel-inner').css('width', '100%');
+    }
+    else {
+        jQuery('.carousel-inner,.project-text,.project-drawing').outerHeight(content_height() - jQuery('.content-controls').outerHeight(true));
+        jQuery('.project-text,.project-drawing').outerWidth(jQuery('.top-row').innerWidth() * .45);
+    }
 }
 
 function update_slide_counter()
@@ -47,36 +49,25 @@ function update_slide_counter()
     jQuery('#slide_counter').html(current_slide + '/' + totalItems);
 }
 
+
 jQuery(document).ready(function(){
     update_slide_counter();
     show_gallery();
-    resize();
-    
     //Set some elements to viewport size (css vw/vh does not work in too many cases)
-    jQuery(window).bind("load resize",function(){
+    jQuery(window).bind("resize load",function(){
         resize();
     });
-    
-    jQuery('.show-text').click(function(){
-        show_text();
-    });
-    
-    jQuery('.show-gallery').click(function(){
-        show_gallery();
+
+    jQuery('.text-vs-gallery').click(function(){
+        if (gallery_visible())
+            show_text();
+        else
+            show_gallery();
     });
     
     jQuery('.carousel').bind('slid.bs.carousel', function() {
         update_slide_counter();
-    });
-    
-    // For touch devices -- change carousel images through swipe gestures
-    jQuery('.item').swipe( {
-        swipeLeft:function() {
-            jQuery('.anchor-next-slide').trigger( "click" );
-        },
-        swipeRight: function() {
-            jQuery('.anchor-prev-slide').trigger( "click" );
-        },
-        threshold:0
-    });
+        if (!gallery_visible())
+            show_gallery();
+    });   
 });

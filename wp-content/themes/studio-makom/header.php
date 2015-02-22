@@ -16,6 +16,7 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link rel="shortcut icon" type="image/ico" href="<?php echo get_template_directory_uri().'/favicon.png'; ?>" />
 <?php wp_head(); ?>
+
 </head>
 
 <?php
@@ -28,11 +29,17 @@
 
 function the_menu_items()
 {
-//    $pages = get_pages( array( 'sort_column' => 'menu_order') );
-//    foreach($pages as $page){
-//        $active = ($page->ID === get_the_ID() ? 'class="active"' : '');
-//        echo '<li '.$active.'><a href="'.get_page_link($page->ID).'">'.$page->post_title.'</a></li>'.PHP_EOL;
-//    }
+    global $post;
+    if (!$post)
+    {
+        return;
+    }
+    $pages = get_pages( array( 'sort_column' => 'menu_order') );
+    foreach($pages as $page){
+        if (strpos(get_page_template_slug($page->ID), 'single-project') != FALSE)
+            continue;
+        echo '<li ' . ($post->ID == $page->ID ? 'class="active"' : '') . '><a href="'. get_page_link($page) . '">' . $page->post_title . '</a></li>'.PHP_EOL;
+    }
 }
 ?>
 
@@ -40,12 +47,15 @@ function the_menu_items()
     <div class="navbar navbar-default navbar-fixed-top navbar-transp" role="navigation">
         <div class="container">
             <div class="navbar-header">
-                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <a type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <img src="<?php echo get_template_directory_uri(); ?>/Assets/show_bar.png" alt="">
                 </a>
+                <a type="button" class="logo-mobile pull-right" href="<?php echo home_url(); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/Assets/logo-mobile.jpg" alt="">
+                </a>
             </div>
-            <div class="navbar-collapse collapse" style="border:0 !important;">
+            <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <?php the_menu_items() ?>
                 </ul>

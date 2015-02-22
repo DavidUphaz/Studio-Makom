@@ -2,48 +2,76 @@
 Theme Name: Studio Makom
 Layout: single-project
 */
-
-.background-cover{
+@import "common"; 
+.project-drawing{
     background-position: center;
     height:100%;
     width: 100%;
-    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
-.project-drawing{  
-    .background-cover;
+.project-carousel{
+    padding: 0;
 }
 
-.project-drawing, .project-text{
-    padding-top: 100px;
+@media screen and (max-width:767px) {
+    #text, #projects{
+        display:none;
+    }
+    .row{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }
+@media screen and (min-width:768px) {
+    .project-drawing, .project-text{
+        padding-top: 100px;
+    }
+    
+    .row{
+        padding-left: @typical_side_padding;
+        padding-right: @typical_side_padding;
+    }
+    
+    .content-controls{
+        border: 1px solid @logo_image_foreground;
+        border-top: 0;
+        padding-top: 10px;
+     }
 
-.project-carousel {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.content-controls{
-    background: url(../Assets/Underline.jpg) repeat-x bottom;
+     .top-row{
+        border-left: 1px solid @logo_image_foreground;
+        background: url('../Assets/gradient-1.png') no-repeat right top;
+     }
 }
 
 .content-controls * {
-    color: black;
-    font-weight: bold;
+    color: @logo_image_foreground;
+}
+
+.disabled-anchor:hover {
+    text-decoration:none;
+    color: @logo_image_foreground !important;
+    cursor: default;
+}
+
+a:hover{
+    color: @inactive_color !important;
 }
 
 .btn-group > :first-child {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 .btn-group > :last-child {
-    padding-right: 0px;
+    padding-right: 0;
 }
 
 .row > :first-child {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
 .row > :last-child, .btn:last-child {
-    padding-right: 0px;
+    padding-right: 0;
 }

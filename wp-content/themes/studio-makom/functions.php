@@ -92,24 +92,24 @@ add_action( 'widgets_init', 'studio_makom_widgets_init' );
  * Enqueue scripts and styles.
  */
 function studio_makom_scripts() {
-        wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
-        wp_enqueue_style( 'custom-scroll-bar', get_template_directory_uri() . '/jquery.mCustomScrollbar.css');
-        wp_enqueue_style( 'studio-makom-style', get_stylesheet_uri() );
-        $template_name = basename(get_page_template(), ".php");
-        if (!empty($template_name))
-        {
-            wp_enqueue_style( 'studio-makom' . $template_name , get_template_directory_uri() . '/layouts/'. $template_name . '.less' );
-        }
-        wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array('jquery'), '', false );
-        wp_enqueue_script( 'custom-scrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '', false );
-        wp_enqueue_script( 'touchSwipe-js', get_template_directory_uri() . '/js/jquery.touchSwipe.min.js', array('jquery'), '', false );
-        wp_enqueue_script( 'lazyLoad-js', get_template_directory_uri() . '/js/jquery.lazyload.min.js', array('jquery'), '', false );
-        wp_enqueue_script( 'studio-makom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
-	wp_enqueue_script( 'studio-makom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
-        if (!empty($template_name))
-        {
-            wp_enqueue_script( 'studio-makom-js', get_template_directory_uri() . '/js/' . $template_name . '.js', array('jquery'), '', false );      
-        }
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css');
+    wp_enqueue_style( 'custom-scroll-bar', get_template_directory_uri() . '/jquery.mCustomScrollbar.css');
+    wp_enqueue_style( 'studio-makom-style', get_stylesheet_uri() );
+    
+    wp_enqueue_style( 'studio-makom-common-styles',  get_template_directory_uri() . '/layouts/common.css' );
+    $template_name = basename(get_page_template(), ".php");
+
+    if (!empty($template_name) && file_exists(get_template_directory() . '/layouts/'. $template_name . '.css'))
+            wp_enqueue_style( 'studio-makom-template-style-' . $template_name , get_template_directory_uri() . '/layouts/'. $template_name . '.css' );
+    wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array('jquery'), '', false );
+    wp_enqueue_script( 'custom-scrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '', false );
+    wp_enqueue_script( 'screenfull-js', get_template_directory_uri() . '/js/screenfull.min.js', array('jquery'), '', false );
+    wp_enqueue_script( 'touchSwipe-js', get_template_directory_uri() . '/js/jquery.touchSwipe.min.js', array('jquery'), '', false );
+    wp_enqueue_script( 'studio-makom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
+    wp_enqueue_script( 'studio-makom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
+    wp_enqueue_script( 'studio-makom-common', get_template_directory_uri() . '/js/common.js', array(), '', false );
+    if (!empty($template_name) && file_exists(get_template_directory() . '/js/'. $template_name . '.js'))
+        wp_enqueue_script( 'studio-makom-js', get_template_directory_uri() . '/js/'. $template_name . '.js', array('jquery'), '', false );
 }
 add_action( 'wp_enqueue_scripts', 'studio_makom_scripts' );
 

@@ -22,18 +22,3 @@ Use it to make something cool, have fun, and share what you've learned with othe
 Global font specification
 =============================================
 */
-
-.navbar-default {
-background-color: rgba(0,0,0,0);
-border-color: rgba(0,0,0,0);
-}
-
-.studio_makom_body {
-    padding:10px;
-    padding-top:70px;
-}
-
-* {
-    color:black;
-    direction: rtl;
-}
