@@ -1,0 +1,82 @@
+/*
+Theme Name: Studio Makom
+Layout: front-page
+*/
+
+@import "common";
+
+@media screen and (min-width:768px) {
+    .mobile-content{
+        display:none;
+    }
+    .non-mobile-content{
+        display: block;
+    }
+    .row{
+        border: 1px solid @logo_image_foreground;
+        border-top: 0;
+        border-right: 0;
+        background: url('../Assets/gradient-1.png') no-repeat right top;
+        padding-bottom: 10px;
+    }
+    .carousel .item{
+        background-size: cover;
+    }
+}
+
+
+@media screen and (max-width:767px) {
+    .mobile-content{
+        display: inline-block;
+        width: 100%;
+    }
+    .non-mobile-content{
+        display: none;
+    }
+    .content-wrapper-mobile{
+        border: 1px solid @logo_image_foreground;
+        margin: 10px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, .5);
+    }
+}
+
+.contact-form-div{
+    position:absolute;
+    top: 5%;
+    left: 5%;
+    width: auto;
+    height: auto;
+    max-height: 90%;
+    max-width: 90%;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 10px;
+}
+
+@input-border: 1px solid #cacaca;
+
+.contact-form{
+    /*width:100%;*/
+    /*font-size:9pt;*/
+    width: auto;
+    height: auto;
+    text-align:justify;
+    direction:rtl;
+}
+
+.contact-form .input-box{
+    border: @input-border;
+    width: 150px;
+}
+
+.contact-form td {
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
+
+.contact-form .message{
+    width:150px;
+    overflow:auto;
+    border: @input-border;
+    padding:2px 0 0 3px;
+}
