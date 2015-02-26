@@ -32,14 +32,8 @@ function show_gallery()
 
 function resize()
 {
-    if (screenfull.isFullscreen){
-        jQuery('.carousel-inner').css('height', '100%');
-        jQuery('.carousel-inner').css('width', '100%');
-    }
-    else {
-        jQuery('.carousel-inner,.project-text,.project-drawing').outerHeight(content_height() - jQuery('.content-controls').outerHeight(true));
-        jQuery('.project-text,.project-drawing').outerWidth(jQuery('.top-row').innerWidth() * .45);
-    }
+    jQuery('.carousel-inner,.project-text,.project-drawing').outerHeight(content_height() - jQuery('.content-controls').outerHeight(true));
+    jQuery('.project-text,.project-drawing').outerWidth(jQuery('.top-row').innerWidth() * .45);
 }
 
 function update_slide_counter()

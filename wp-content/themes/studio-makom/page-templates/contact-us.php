@@ -44,14 +44,14 @@ function echo_contact_us_form_markup()
                 </tr>
                 <tr>
                     <td>סטודיו מקום</td>
-                    <td class="digits">studiomakom@gmail.com</td>
+                    <td style="font-size: 12pt !important;">studiomakom@gmail.com</td>
                 </tr>
                 <tr>
                     <td>טובה דגן</td>
                     <td class="digits">052-8552136</td>
                 </tr>
                 <tr>
-                    <td>רקפת עצמון אופז</td>
+                    <td>רקפת ע. אופז</td>
                     <td class="digits">052-3295324</td>
                 </tr>
             </table>

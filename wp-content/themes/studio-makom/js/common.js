@@ -6,26 +6,18 @@ function is_mobile()
 }
 function content_height() {
     var offset = 5;
-    if (is_mobile())
-        offset = -10;
+//    if (is_mobile())
+//        offset = -10;
     return(jQuery(window).innerHeight() - (jQuery('.navbar').outerHeight(true) + offset));
 }
 
-var fit_to_screen = true;
 function common_resize()
 {
-    if (screenfull.isFullscreen){
-        jQuery('.carousel-inner').css('height', '100%');
-        jQuery('.carousel-inner').css('width', '100%');
-    }
-    else {
-        if (is_mobile())
-            jQuery('body').css('padding-top', "70px");
-        else
-            jQuery('body').css('padding-top', "118px");
-        if (fit_to_screen)
-            jQuery('.carousel-inner').outerHeight(content_height() - 9);
-    }
+    if (is_mobile())
+        jQuery('body').css('padding-top', "0px");
+    else
+        jQuery('body').css('padding-top', "118px");
+    jQuery('.carousel-inner').outerHeight(content_height() - 9);
 }
 
 function load_neighbours()
@@ -52,6 +44,15 @@ function load_neighbours()
 }
 
 jQuery(document).ready(function(){
+    
+    jQuery(document).click(function (event) {
+        var clickover = jQuery(event.target);
+        var _opened = jQuery(".navbar-collapse").hasClass("in");
+        if (_opened === true && !clickover.hasClass("navbar-toggle")) {
+            jQuery('.navbar-toggle').trigger( "click" );
+        }
+    });
+
     jQuery('body').hide();
     
     jQuery(window).bind("load",function(){
@@ -71,14 +72,6 @@ jQuery(document).ready(function(){
 
    // For touch devices -- change carousel images through swipe gestures
    jQuery('.carousel .item').swipe( {
-       tap:function() {
-           
-           if (screenfull.enabled){
-
-                screenfull.toggle(jQuery('.carousel-inner')[0]);
-           }
-                
-       },
        swipeLeft:function() {
            jQuery('.anchor-next-slide').trigger( "click" );
        },
@@ -89,12 +82,12 @@ jQuery(document).ready(function(){
    });
 
    // Change carousel images through click
-//    jQuery('.carousel .item').click(function(e){
-//        var x = e.pageX - jQuery(this).offset().left;
-//        var w = jQuery(this).innerWidth();
-//        if (x > w/2)
-//            jQuery('.anchor-next-slide').trigger( "click" );
-//        else
-//            jQuery('.anchor-prev-slide').trigger( "click" );
-//   });
+    jQuery('.carousel .item').click(function(e){
+        var x = e.pageX - jQuery(this).offset().left;
+        var w = jQuery(this).innerWidth();
+        if (x > w/2)
+            jQuery('.anchor-next-slide').trigger( "click" );
+        else
+            jQuery('.anchor-prev-slide').trigger( "click" );
+   });
 });

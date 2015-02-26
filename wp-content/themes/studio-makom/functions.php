@@ -6,6 +6,16 @@
  */
 
 /**
+ * Check if string is null or empty
+ */
+
+if ( ! function_exists( 'IsNullOrEmptyString' ) ) :
+function IsNullOrEmptyString($s){
+    return (!isset($s) || trim($s)==='');
+}
+endif; // IsNullOrEmptyString
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
@@ -103,7 +113,6 @@ function studio_makom_scripts() {
             wp_enqueue_style( 'studio-makom-template-style-' . $template_name , get_template_directory_uri() . '/layouts/'. $template_name . '.css' );
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', array('jquery'), '', false );
     wp_enqueue_script( 'custom-scrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array('jquery'), '', false );
-    wp_enqueue_script( 'screenfull-js', get_template_directory_uri() . '/js/screenfull.min.js', array('jquery'), '', false );
     wp_enqueue_script( 'touchSwipe-js', get_template_directory_uri() . '/js/jquery.touchSwipe.min.js', array('jquery'), '', false );
     wp_enqueue_script( 'studio-makom-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
     wp_enqueue_script( 'studio-makom-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
@@ -129,6 +138,23 @@ add_action( 'admin_init', 'hide_editor' );
 function hide_editor() {
         remove_post_type_support('page', 'editor');
 }
+
+add_action( 'template_redirect', 'mobile_redirect' );
+
+function mobile_redirect(){
+    $param = 'UA';
+    $val = filter_input(INPUT_GET, $param);
+    if (!$val || IsNullOrEmptyString($val)) {
+        wp_redirect( add_query_arg( $param, wp_is_mobile() ? 'mobile' : 'desktop_tablet', get_permalink()));
+        exit(); 
+    }
+}
+
+if (!function_exists('is_mobile_url')) :
+function is_mobile_url(){
+    return(filter_input(INPUT_GET, 'UA') === 'mobile');
+}
+endif;
 
 /**
  * Implement the Custom Header feature.

@@ -5,6 +5,17 @@
 ?>
 
 <?php
+function echo_single_project_mobile()
+{
+    $gallery = get_field('gallery');
+    echo '<div class="row">';
+    $mobile = is_mobile_url();
+    foreach($gallery as $image){
+        echo '      <img style="padding:15px !important;" src="' . ($mobile ? $image['sizes']['large'] : $image['url']) . '" class="img-responsive col-xs-12" alt=""/>';
+    }
+    echo '</div>';
+}
+
 function echo_single_project()
 {
     $template_dir_uri = get_template_directory_uri();
@@ -19,8 +30,9 @@ function echo_single_project()
     $gallery = get_field('gallery');
     $tiny = get_template_directory_uri() . '/Assets/tiny.png';
     $counter = 1;
+    $mobile = is_mobile_url();
     foreach($gallery as $image){
-        $url = $image['url'];
+        $url = $mobile ? $image['sizes']['large'] : $image['url'];
         $class = ' class="item background-contain' . ($counter == 1 ? ' active' : '') . ' " ';
         if ($counter > 1) {
             $id = ' id="lazy-' . $counter . '" ';
@@ -52,5 +64,12 @@ function echo_single_project()
 ?>
 
 <?php get_header(); ?>
-<?php echo_single_project(); ?>
+<?php 
+    if (is_mobile_url()){
+        echo_single_project_mobile();
+    }
+    else{
+        echo_single_project();
+    }
+?>
 <?php get_footer(); ?>

@@ -14,7 +14,8 @@ function echo_front_page()
     $tiny = get_template_directory_uri() . '/Assets/tiny.png';
     $counter = 1;
     foreach($gallery as $image){
-        $url = $image['url'];
+        //write_log($image['sizes']['large']);
+        $url = is_mobile_url() ? $image['sizes']['large'] : $image['url'];
         $class = ' class="item background-contain' . ($counter == 1 ? ' active' : '') . ' " ';
         if ($counter > 1) {
             $id = ' id="lazy-' . $counter . '" ';

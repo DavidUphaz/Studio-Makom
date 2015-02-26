@@ -44,7 +44,7 @@ function the_menu_items()
 ?>
 
  <body <?php body_class('studio_makom_body'); ?>>
-    <div class="navbar navbar-default navbar-fixed-top navbar-transp" role="navigation">
+    <div class="navbar navbar-default <?php echo !is_mobile_url() ? 'navbar-fixed-top' : '';?> navbar-transp" role="navigation">
         <div class="container">
             <div class="navbar-header">
                 <a type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
