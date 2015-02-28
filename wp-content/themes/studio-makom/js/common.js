@@ -4,19 +4,21 @@ function is_mobile()
 {
     return(window.matchMedia( mobile_media_query ).matches);
 }
+
 function content_height() {
-    var offset = 5;
-//    if (is_mobile())
-//        offset = -10;
-    return(jQuery(window).innerHeight() - (jQuery('.navbar').outerHeight(true) + offset));
+    return(jQuery(window).innerHeight() - (jQuery('.navbar').outerHeight(true) + 5));
 }
 
 function common_resize()
 {
-    if (is_mobile())
+    if (is_mobile()) {
         jQuery('body').css('padding-top', "0px");
-    else
+        jQuery('.navbar').removeClass('navbar-fixed-top');
+    }
+    else {
         jQuery('body').css('padding-top', "118px");
+        jQuery('.navbar').addClass('navbar-fixed-top');
+    }
     jQuery('.carousel-inner').outerHeight(content_height() - 9);
 }
 
@@ -39,7 +41,7 @@ function load_neighbours()
             jQuery(this.lazy).css('background-image', 'url(' + this.src + ')');
         };
         tmpImg.src = jQuery(lazy).attr('lazy-image');
-        jQuery(this.lazy).removeAttr('lazy-image');
+        jQuery(lazy).removeAttr('lazy-image');
     }
 }
 

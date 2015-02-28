@@ -43,15 +43,44 @@ function update_slide_counter()
     jQuery('#slide_counter').html(current_slide + '/' + totalItems);
 }
 
+function load_in_sequence(index, increment)
+{
+    var children = jQuery('.mobile-content').children();
+    if (index < children.length){
+        var lazyImg = children[index];
+        if (jQuery(lazyImg).attr('lazy-image') !== undefined)
+        {
+            var tmpImg = new Image() ;
+            tmpImg.index = index;
+            tmpImg.increment = increment;
+            tmpImg.onload = function() {
+                var lazyImg = jQuery('.mobile-content').children()[this.index];
+                jQuery(lazyImg).attr('src', this.src);
+                load_in_sequence(this.index + this.increment, this.increment);
+            };
+            tmpImg.src = jQuery(lazyImg).attr('lazy-image');
+            jQuery(lazyImg).removeAttr('lazy-image');
+        }
+        else
+            load_in_sequence(index + increment, increment);
+    }
+}
 
+var firstTime = true;
 jQuery(document).ready(function(){
     update_slide_counter();
     show_gallery();
+    
     //Set some elements to viewport size (css vw/vh does not work in too many cases)
     jQuery(window).bind("resize load",function(){
+        if (firstTime && is_mobile())
+        {
+            for (var i = 0; i < 3; i++)
+                load_in_sequence(i, 3);
+            firstTime = false;
+        }
         resize();
     });
-
     jQuery('.text-vs-gallery').click(function(){
         if (gallery_visible())
             show_text();

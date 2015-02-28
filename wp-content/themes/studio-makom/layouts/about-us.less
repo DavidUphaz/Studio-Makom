@@ -4,11 +4,9 @@ Layout: front-page
 */
 
 @import "common";
+@text_background_color: rgba(255, 255, 255, .5);
 
-@media screen and (min-width:768px) {
-    .mobile-content{
-        display:none;
-    }
+@media @non_mobile {
     .non-mobile-content{
         display: block;
     }
@@ -19,12 +17,10 @@ Layout: front-page
         background: url('../Assets/gradient-1.png') no-repeat right top;
         padding-bottom: 10px;
     }
-
     .carousel .item{
         background-size: cover;
         margin-top: 40px;
     }
-
     .content-wrapper{
         position:absolute;
         top: -10%;
@@ -32,7 +28,6 @@ Layout: front-page
         width:30%;
         height:100%;
     }
-
     .content-wrapper .image{
         position:absolute;
         width:100%;
@@ -45,23 +40,19 @@ Layout: front-page
         top:30%;
         width:100%;
         bottom: 10px;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: @text_background_color;
         padding: 10px;
     }
 }
 
-@media screen and (max-width:767px) {
+@media @mobile {
     .mobile-content{
         display: inline-block;
-
-    }
-    .non-mobile-content{
-        display: none;
     }
     .content-wrapper-mobile{
         margin: 10px;
         padding: 10px;
         border: 1px solid @logo_image_foreground;
-        background-color: rgba(255, 255, 255, .5);
+        background-color: @text_background_color;
     }
 }

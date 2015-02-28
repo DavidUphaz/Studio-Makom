@@ -1,3 +1,7 @@
+/*
+        Global styles
+        =============
+*/
 @font-face {
   font-family: boker;
   src: url('../Assets/Boker.ttf'), url('../Assets/Boker.woff');
@@ -9,11 +13,39 @@
   font-size: large !important;
   outline: 0 !important;
 }
-.digits {
+.clear-digits {
   /*font-family: Serif;*/
   letter-spacing: 3px;
 }
-@media screen and (max-width: 767px) {
+/*
+        Hide Mobile/Non-Mobile according to screen size
+        ====================================================
+*/
+@media only screen and (min-width: 768px) {
+  .mobile-content {
+    display: none;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .non-mobile-content {
+    display: none;
+  }
+}
+/*
+        Navbar
+        ======
+*/
+.navbar-default .navbar-nav > .active > a {
+  background-color: transparent !important;
+}
+.navbar {
+  border: 0;
+}
+/*
+        The mobile navbar
+        =================
+*/
+@media only screen and (max-width: 767px) {
   .studio_makom_body {
     padding: 0px;
   }
@@ -22,14 +54,10 @@
     padding: 5px !important;
   }
   .navbar {
-    /*height: @logo_image_height;*/
     background-color: white;
   }
   .logo-mobile {
     margin: 10px;
-  }
-  .carousel {
-    padding: 0px !important;
   }
   .navbar-default .navbar-nav > li > a:hover {
     background-color: rgba(0, 0, 0, 0.02);
@@ -38,7 +66,11 @@
     margin-bottom: 0;
   }
 }
-@media screen and (min-width: 768px) {
+/*
+        The non mobile navbar
+        =====================
+*/
+@media only screen and (min-width: 768px) {
   .studio_makom_body {
     padding: 10px;
   }
@@ -77,12 +109,10 @@
     border-color: rgba(0, 0, 0, 0);
   }
 }
-.navbar-default .navbar-nav > .active > a {
-  background-color: transparent !important;
-}
-.navbar {
-  border: 0;
-}
+/*
+        Carousel
+        ========
+*/
 .carousel .item {
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
@@ -101,6 +131,21 @@
   opacity: 0;
   z-index: 3;
 }
-.carousel {
-  padding: 0 15px 0 15px;
+/*
+        The non mobile carousel
+        =======================
+*/
+@media only screen and (min-width: 768px) {
+  .carousel {
+    padding: 0 15px 0 15px;
+  }
+}
+/*
+        The mobile carousel
+        ===================
+*/
+@media only screen and (max-width: 767px) {
+  .carousel {
+    padding: 0px !important;
+  }
 }

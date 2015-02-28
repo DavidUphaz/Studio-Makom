@@ -1,4 +1,9 @@
 
+/*
+        Global styles
+        =============
+*/
+
 @font-face {
     font-family: boker;
     src: url('../Assets/Boker.ttf'), url('../Assets/Boker.woff');
@@ -12,17 +17,55 @@
     outline: 0 !important;
 }
 
-.digits {
+.clear-digits {
     /*font-family: Serif;*/
     letter-spacing: 3px;
 }
+
 @logo_image_background: white;
 @logo_image_foreground: black;
 @inactive_color: gray;
 @typical_side_padding: 15px;
 @fade_duration: .5s;
+@mobile:      ~"only screen and (max-width: 767px)";
+@non_mobile:  ~"only screen and (min-width: 768px)";
 
-@media screen and (max-width:767px) {
+/*
+        Hide Mobile/Non-Mobile according to screen size
+        ====================================================
+*/
+
+@media @non_mobile {
+    .mobile-content{
+        display:none;
+    }    
+}
+
+@media @mobile {
+    .non-mobile-content{
+        display:none;
+    }
+}
+
+/*
+        Navbar
+        ======
+*/
+
+.navbar-default .navbar-nav > .active > a {
+        background-color: transparent !important;
+}
+
+.navbar{
+    border: 0;
+}
+
+/*
+        The mobile navbar
+        =================
+*/
+
+@media @mobile {
     @logo_image_height: 43px;
     .studio_makom_body {
         padding: 0px;
@@ -32,36 +75,30 @@
         padding: 5px !important;
     }
     .navbar {
-        /*height: @logo_image_height;*/
         background-color: @logo_image_background;
     }
-    
     .logo-mobile{
         margin:10px;
-        
     }
-    .carousel{
-        padding: 0px !important;
-    }
-
     .navbar-default .navbar-nav > li > a:hover{
             background-color: rgba(0,0,0,.02);
     }
-    
     .navbar{
         margin-bottom: 0;
     }
-
 }
 
-@media screen and (min-width:768px) {
+/*
+        The non mobile navbar
+        =====================
+*/
+@media @non_mobile {
     @logo_image_height: 105px;
     .studio_makom_body {
         padding: 10px;
     }
     .logo-mobile{
-        display:none;
-        
+        display:none; 
     }
     .navbar .navbar-collapse{
         height: @logo_image_height;
@@ -69,7 +106,6 @@
         background-repeat: no-repeat;
         background-image: url('../Assets/logo.jpg');
     }
-
     .navbar .container{
         padding-left: 0;
         padding-right:0;
@@ -91,20 +127,17 @@
         border-top-color: @logo_image_background;
         color: @inactive_color;
     }
-
     .navbar-default {
         background-color: rgba(0,0,0,0);
         border-color: rgba(0,0,0,0);
     }
 }
 
-.navbar-default .navbar-nav > .active > a {
-        background-color: transparent !important;
-}
+/*
+        Carousel
+        ========
+*/
 
-.navbar{
-    border: 0;
-}
 .carousel .item {
     -webkit-transition: opacity @fade_duration;
     -moz-transition: opacity @fade_duration;
@@ -124,6 +157,22 @@
     z-index:3;
 }
 
-.carousel{
-    padding: 0 @typical_side_padding 0 @typical_side_padding;
+/*
+        The non mobile carousel
+        =======================
+*/
+@media @non_mobile {   
+    .carousel{
+        padding: 0 @typical_side_padding 0 @typical_side_padding;
+    }
+}
+
+/*
+        The mobile carousel
+        ===================
+*/
+@media @mobile {
+    .carousel{
+        padding: 0px !important;
+    }
 }

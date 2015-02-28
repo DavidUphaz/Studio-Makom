@@ -2,29 +2,25 @@
 Theme Name: Studio Makom
 Layout: single-project
 */
-@import "common"; 
-.project-drawing{
-    background-position: center;
-    height:100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-}
+@import "common";
 
-.project-carousel{
-    padding: 0;
-}
+/*
+                       Desktop and tablet part
+*/
 
-@media screen and (max-width:767px) {
-    #text, #projects{
-        display:none;
+@media @non_mobile{
+    .project-drawing{
+        background-position: center;
+        height:100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: contain;
     }
-    .row{
-        padding-left: 5px;
-        padding-right: 5px;
+
+    .project-carousel{
+        padding: 0;
     }
-}
-@media screen and (min-width:768px) {
+
     .project-drawing, .project-text{
         padding-top: 100px;
     }
@@ -44,34 +40,45 @@ Layout: single-project
         border-left: 1px solid @logo_image_foreground;
         background: url('../Assets/gradient-1.png') no-repeat right top;
      }
+
+    .content-controls * {
+        color: @logo_image_foreground;
+    }
+
+    .disabled-anchor:hover {
+        text-decoration:none;
+        color: @logo_image_foreground !important;
+        cursor: default;
+    }
+
+    a:hover{
+        color: @inactive_color !important;
+    }
+
+    .btn-group > :first-child {
+        padding-left: 0;
+    }
+
+    .btn-group > :last-child {
+        padding-right: 0;
+    }
+
+    .row > :first-child {
+        padding-left: 0;
+    }
+
+    .row > :last-child, .btn:last-child {
+        padding-right: 0;
+    }
 }
 
-.content-controls * {
-    color: @logo_image_foreground;
-}
+/*
+                        Mobile part
+*/
 
-.disabled-anchor:hover {
-    text-decoration:none;
-    color: @logo_image_foreground !important;
-    cursor: default;
-}
-
-a:hover{
-    color: @inactive_color !important;
-}
-
-.btn-group > :first-child {
-    padding-left: 0;
-}
-
-.btn-group > :last-child {
-    padding-right: 0;
-}
-
-.row > :first-child {
-    padding-left: 0;
-}
-
-.row > :last-child, .btn:last-child {
-    padding-right: 0;
+@media @mobile {
+    .row{
+        padding-left: 5px;
+        padding-right: 5px;
+    }
 }

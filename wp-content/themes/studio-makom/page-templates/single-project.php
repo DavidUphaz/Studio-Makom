@@ -5,21 +5,27 @@
 ?>
 
 <?php
-function echo_single_project_mobile()
+function echo_single_project_mobile($gallery, $is_mobile_device)
 {
-    $gallery = get_field('gallery');
-    echo '<div class="row">';
-    $mobile = is_mobile_url();
+    echo '<div class="row mobile-content">';
+    $count = 1;
+    $tiny = get_template_directory_uri() . '/Assets/tiny1.png';
     foreach($gallery as $image){
-        echo '      <img style="padding:15px !important;" src="' . ($mobile ? $image['sizes']['large'] : $image['url']) . '" class="img-responsive col-xs-12" alt=""/>';
+        $img = ($is_mobile_device ? $image['sizes']['large'] : $image['url']);
+        echo '      <img id="mobile-lazy-' . $count . '" style="padding:15px !important;" class="img-responsive col-xs-12" alt="" ';
+        if ($count < 3)
+            echo 'src="' . $img . '"/>';
+        else
+            echo 'lazy-image="' . $img . '" src="' . $tiny . '"/>';
+        $count++;
     }
     echo '</div>';
 }
 
-function echo_single_project()
+function echo_single_project($gallery, $is_mobile_device)
 {
     $template_dir_uri = get_template_directory_uri();
-    echo '<div class="row top-row">';
+    echo '<div class="row top-row non-mobile-content">';
     echo '  <div class="col-xs-6 project-text mCustomScrollbar" data-mcs-theme="dark">';
     echo        get_field('detailed_description');
     echo '  </div>';
@@ -27,12 +33,10 @@ function echo_single_project()
     echo '  <div class="col-lg-12 project-carousel">';
     echo '      <div id="carousel_1"  class="carousel slide" data-ride="carousel" data-interval="false">';
     echo '          <div class="carousel-inner">';
-    $gallery = get_field('gallery');
     $tiny = get_template_directory_uri() . '/Assets/tiny.png';
     $counter = 1;
-    $mobile = is_mobile_url();
     foreach($gallery as $image){
-        $url = $mobile ? $image['sizes']['large'] : $image['url'];
+        $url = $is_mobile_device ? $image['sizes']['large'] : $image['url'];
         $class = ' class="item background-contain' . ($counter == 1 ? ' active' : '') . ' " ';
         if ($counter > 1) {
             $id = ' id="lazy-' . $counter . '" ';
@@ -50,7 +54,7 @@ function echo_single_project()
     echo '      </div>';
     echo '  </div>';
     echo '</div>';
-    echo '<div class="row content-controls">';
+    echo '<div class="row content-controls non-mobile-content">';
     echo '      <div class="col-xs-9 btn-group" style="height:30px; margin-bottom: 5px;">';
     echo '          <a id="projects" class="btn btn-link" href="'. get_page_link(get_page_by_title('פרוייקטים')->ID) . '"' . '>פרוייקטים</a>';
     echo '          <a class="btn btn-link anchor-prev-slide" href="#carousel_1" data-slide="prev"><img src="' . $template_dir_uri . '/Assets/arrows-left-icon.png"/></a>';
@@ -64,12 +68,10 @@ function echo_single_project()
 ?>
 
 <?php get_header(); ?>
-<?php 
-    if (is_mobile_url()){
-        echo_single_project_mobile();
-    }
-    else{
-        echo_single_project();
-    }
+<?php
+    $gallery = get_field('gallery');
+    $is_mobile_device = is_mobile_url();
+    echo_single_project_mobile($gallery, $is_mobile_device);
+    echo_single_project($gallery, $is_mobile_device);
 ?>
 <?php get_footer(); ?>

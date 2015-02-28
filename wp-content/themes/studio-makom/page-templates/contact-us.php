@@ -48,11 +48,11 @@ function echo_contact_us_form_markup()
                 </tr>
                 <tr>
                     <td>טובה דגן</td>
-                    <td class="digits">052-8552136</td>
+                    <td class="clear-digits">052-8552136</td>
                 </tr>
                 <tr>
                     <td>רקפת ע. אופז</td>
-                    <td class="digits">052-3295324</td>
+                    <td class="clear-digits">052-3295324</td>
                 </tr>
             </table>
         </form>

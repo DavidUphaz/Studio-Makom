@@ -5,6 +5,8 @@
  * @package Studio Makom
  */
 
+require_once(get_template_directory() . '/inc/Mobile_Detect.php');
+
 /**
  * Check if string is null or empty
  */
@@ -145,7 +147,8 @@ function mobile_redirect(){
     $param = 'UA';
     $val = filter_input(INPUT_GET, $param);
     if (!$val || IsNullOrEmptyString($val)) {
-        wp_redirect( add_query_arg( $param, wp_is_mobile() ? 'mobile' : 'desktop_tablet', get_permalink()));
+        $detect = new Mobile_Detect;
+        wp_redirect( add_query_arg( $param, $detect->isMobile() && !$detect->isTablet() ? 'mobile' : 'desktop_tablet', get_permalink()));
         exit(); 
     }
 }

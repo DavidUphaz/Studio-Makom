@@ -5,10 +5,7 @@ Layout: front-page
 
 @import "common";
 
-@media screen and (min-width:768px) {
-    .mobile-content{
-        display:none;
-    }
+@media @non_mobile {
     .non-mobile-content{
         display: block;
     }
@@ -23,15 +20,10 @@ Layout: front-page
         background-size: cover;
     }
 }
-
-
-@media screen and (max-width:767px) {
+@media @mobile {
     .mobile-content{
         display: inline-block;
         width: 100%;
-    }
-    .non-mobile-content{
-        display: none;
     }
     .content-wrapper-mobile{
         border: 1px solid @logo_image_foreground;
@@ -61,17 +53,14 @@ Layout: front-page
     text-align:justify;
     direction:rtl;
 }
-
 .contact-form .input-box{
     border: @input-border;
     width: 150px;
 }
-
 .contact-form td {
     padding-bottom: 5px;
     padding-right: 5px;
 }
-
 .contact-form .message{
     width:150px;
     overflow:auto;
